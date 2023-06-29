@@ -1,0 +1,172 @@
+.signIn__wrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.signIn__google{
+    border: 1px solid black;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin-bottom: 5px;
+    padding: 10px;
+
+}
+.signIn__google:hover{
+    cursor: pointer;
+    background-color: #ddd;
+}
+.signIn__facebook:hover{
+    cursor: pointer;
+    background-color: #ddd;
+}
+
+.signIn__google__img{
+    margin-left: 20px;
+    width: 35px;
+    border-radius: 99999px;
+    height: 35px;
+}
+
+.signIn__google__title{
+    text-align: center;
+    flex: 1;
+    display: inline-block;
+    font-size: 25px;
+}
+
+.signIn__facebook{
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    width: 80%;
+}
+.signIn__facebook__title{
+    text-align: center;
+    flex: 1;
+    display: inline-block;
+    font-size: 25px;
+}
+.signIn__facebook__img{
+    margin-left: 20px;
+    width: 35px;
+    height: 35px;
+    border-radius: 99999px;
+}
+
+.signIn__orHolder{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.signIn__line{
+    height: 1px;
+    background-color: black;
+    min-width: 200px;
+    margin: 10px;
+}
+
+
+
+.signIn__or{
+    font-size: 25px;
+}
+
+.signIn__email{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.signIn__email__title{
+    width: 80%;
+    font-size: 20px;
+}
+
+.signIn__input__email__holder{
+    width: 80%;
+    height: 50px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.signIn__input__email{
+    width: 90%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.signIn__password{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.signIn__title{
+    width: 80%;
+    font-size: 20px;
+}
+
+.signIn__password__holder{
+    width: 80%;
+    height: 50px;
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 1px solid black;
+}
+
+.signIn__password__input{
+    width: 90%;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.signIn__password__option{
+    margin-top: 15px;
+    display: flex;
+    width: 80%;
+}
+
+.signIn__checkBox{
+    font-size: 20px;
+    flex: 1;
+}
+.signIn__forgorPass{
+    font-size: 20px;
+}
+
+.signIn__btn{
+    font-size: 30px;
+    background-color: #ddd;
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: linear-gradient(to bottom, #FF8C00, #64F38C);
+    margin-top: 20px;
+}
+.signIn__btn:hover{
+    cursor: pointer;
+    
+}

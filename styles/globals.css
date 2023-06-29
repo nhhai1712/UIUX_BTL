@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.homepage-title {
+    background: linear-gradient(to bottom, #FF8C00, #64F38C);
+}
+.user-auth-color{
+    background: linear-gradient(to bottom, #FCEABB, #F8B500);
+}
+.btn-primary{
+    @apply bg-primary text-white px-4 py-1 rounded-sm shadow-sm;
+}
+.nav-bar{
+    background: linear-gradient(to bottom, #00BFFF, #32CD32);
+}
+.nav-btn{
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    --tw-text-opacity: 1;
+    color: rgb(17 24 39 / var(--tw-text-opacity));
+}
+.nav-btn:hover{
+    --tw-bg-opacity: 1;
+    background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+.nav-btn.active{
+    background: linear-gradient(to right, #FFA500, #FFFF00);
+}
+.btn-secondary{
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity));
+    background: linear-gradient(to bottom, #141E30, #243B55);
+    height: 2rem;
+    width: 6rem;
+    border-top-left-radius: 0.75rem;
+    border-radius: 0.75rem;
+    text-align: center;
+}
+.btn-secondary:hover{
+    background: linear-gradient(to bottom, #20002c, #cbb4d4);
+}
+.btn-secondary.clicked{
+    background: linear-gradient(to bottom, #f12711, #f5af19);
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+  
+.popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    z-index: 1000;
+}
+.popup-task {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.popup-task-content {
+    background-color:white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    max-width: 500px;
+    max-height: 500px;
+    overflow-y: auto;
+  }
