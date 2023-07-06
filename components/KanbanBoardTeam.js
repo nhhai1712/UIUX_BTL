@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import FilterButton from './FilterButton';
+import FilterButtonTeam from './FilterButtonTeam';
 import AddTask from  "@/components/AddTask";
 import SearchBar from '@/components/SearchBar';
 export default function KanbanBoard() {
@@ -9,12 +9,13 @@ export default function KanbanBoard() {
   const [editedTask, setEditedTask] = useState();
   const [selectedPriority, setSelectedPriority] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
+  const [selectedNameTeam, setSelectedNameTeam] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-
   useEffect(() => {
     async function fetchTasks() {
-      const response = await fetch('data/task-per.json');
+      const response = await fetch('data/task-team.json');
       const tasks = await response.json();
+      console.log(tasks);
       setTasks(tasks);
     }
     fetchTasks();
@@ -54,21 +55,6 @@ export default function KanbanBoard() {
       [type]: value,
     }));
   }
-
-  // const filteredTasks = tasks.filter((task) => {
-  //   let isFiltered = true;
-
-  //   if (filters.priority && task.priority !== filters.priority) {
-  //     isFiltered = false;
-  //   }
-
-  //   if (filters.status && task.status !== filters.status) {
-  //     isFiltered = false;
-  //   }
-
-  //   return isFiltered;
-  // });
-
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setEditedTask((prevTask) => ({ ...prevTask, [name]: value }));
@@ -124,13 +110,15 @@ export default function KanbanBoard() {
       console.error(`Failed to delete task ${taskId}: ${error.message}`);
     }
   }
-  function handleFilterChange({ selectedPriority, selectedStatus }) {
+  function handleFilterChange({ selectedPriority, selectedStatus, selectedNameTeam }) {
     setSelectedPriority(selectedPriority);
     setSelectedStatus(selectedStatus);
+    setSelectedNameTeam(selectedNameTeam);
   }
   function handleSearchTermChange(searchTerm) {
     setSearchTerm(searchTerm);
   }
+
   const filteredTasks = tasks.filter((task) => {
     if (selectedPriority && task.priority !== selectedPriority) {
       return false;
@@ -148,21 +136,27 @@ export default function KanbanBoard() {
       && !task.startdate.toLowerCase().includes(searchTerm.toLowerCase())
       && !task.duedate.toLowerCase().includes(searchTerm.toLowerCase())
       && !task.tags.toLowerCase().includes(searchTerm.toLowerCase())
+      && !task.nameTeam.toLowerCase().includes(searchTerm.toLowerCase())
+      && !task.assign.toLowerCase().includes(searchTerm.toLowerCase())
+    //   && !task.staff.some((staffMember) => staffMember.toLowerCase().includes(searchTerm.toLowerCase()))
+    //   && !task.supporter.some((supporterMember) => supporterMember.toLowerCase().includes(searchTerm.toLowerCase()))
       ) {
       return false;
     }
     return true;
-  });
+    });
   return ( 
     <div>
     <div className='relative'>
-      <div className='flex justify-end mb-4'>
+        <div className='flex justify-end mb-4'>
         <SearchBar searchTerm={searchTerm} onChange={handleSearchTermChange} />
-        <FilterButton
-          selectedPriority={selectedPriority}
-          selectedStatus={selectedStatus}
-          onChange={handleFilterChange}
-        />
+        <FilterButtonTeam
+        selectedPriority={selectedPriority}
+        selectedStatus={selectedStatus}
+        selectedNameTeam={selectedNameTeam}
+        onNameTeamChange={setSelectedNameTeam} 
+        onChange={handleFilterChange}
+      />
         <AddTask/>
       </div>
       <div className='flex'>
@@ -297,7 +291,7 @@ export default function KanbanBoard() {
             onClick={(event) => event.stopPropagation()}
           > 
            
-            <div className="w-[400px] h-[600px]">
+            <div className="w-[400px] h-[600px] max-h-500 overflow-y-auto">
               <p className="text-sm text-gray-900 dark:text-white font-bold" role="none">
                 Task Detail
               </p>
@@ -317,7 +311,7 @@ export default function KanbanBoard() {
                   )}
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 flex">
                 <label className="font-bold mr-2">Description:</label>
                   {editedTask ? (
                     <textarea
@@ -330,7 +324,7 @@ export default function KanbanBoard() {
                     <span>{selectedTask.description}</span>
                   )}
               </div>
-
+            {/* <div className='flex justify-between'> */}
               <div className="mb-4">
                 <label className="font-bold mr-2">Start Date:</label>
                   {editedTask ? (
@@ -360,7 +354,8 @@ export default function KanbanBoard() {
                     <span>{selectedTask.duedate}</span>
                   )}
               </div>
-
+            {/* </div> */}
+            {/* <div className='flex justify-between'> */}
               <div className="mb-4">
                 <label className="font-bold mr-2">Priority:</label>
                   {editedTask ? (
@@ -379,7 +374,7 @@ export default function KanbanBoard() {
                   )}
               </div>
 
-              <div className="mb-4">
+              <div className="mb-4 mr-4">
                 <label className="font-bold mr-2">Status:</label>
                   {editedTask ? (
                     <select
@@ -395,8 +390,10 @@ export default function KanbanBoard() {
                   ) : (
                     <span>{selectedTask.status}</span>
                   )}
-              </div>
+              {/* </div> */}
+            </div>
 
+            {/* <div className='flex justify-between'>  */}
               <div className="mb-4">
                 <label className="font-bold mr-2">Work Location:</label>
                   {editedTask ? (
@@ -411,7 +408,23 @@ export default function KanbanBoard() {
                     <span>{selectedTask.workLocation}</span>
                   )}
               </div>
-              
+
+              <div className="mb-4">
+                <label className="font-bold mr-2">Name Team:</label>
+                  {editedTask ? (
+                    <input
+                      type="text"
+                      name="nameTeam"
+                      value={editedTask.nameTeam}
+                      onChange={handleInputChange}
+                      className="border rounded-md px-2 py-1"
+                    />
+                  ) : (
+                    <span>{selectedTask.nameTeam}</span>
+                  )}
+              </div>
+            {/* </div> */}
+            {/* <div className='flex justify-between'> */}
               <div className="mb-4">
                 <label className="font-bold mr-2">Progress:</label>
                   {editedTask ? (
@@ -443,7 +456,55 @@ export default function KanbanBoard() {
                     <span>{selectedTask.tags}</span>
                   )}
               </div>
+            {/* </div> */}
+                <div className="mb-4">
+                <label className="font-bold mr-2">Assign:</label>
+                  {editedTask ? (
+                    <select
+                      name="assign"
+                      value={editedTask.assign}
+                      onChange={handleInputChange}
+                      className="border rounded-md px-2 py-1"
+                    >
+                      <option value="nguyenhoanghai">Nguyen Hoang Hai</option>
+                      <option value="kieudoantrung">Kieu Doan Trung</option>
+                      <option value="nguyenhuutien">Nguyen Huu Tien</option>
+                    </select>
+                  ) : (
+                    <span>{selectedTask.assign}</span>
+                  )}
+              </div>
 
+              <div className="mb-4">
+                <label className="font-bold mr-2">Staff:</label>
+                  {editedTask ? (
+                    <input
+                      name="staff"
+                      value={editedTask.staff}
+                      onChange={handleInputChange}
+                      className="border rounded-md px-2 py-1"
+                    >
+                    </input>
+                  ) : (
+                    <span>{selectedTask.staff}</span>
+                  )}
+              </div>
+
+              <div className="mb-4">
+                <label className="font-bold mr-2">Supporter:</label>
+                  {editedTask ? (
+                    <input
+                      name="supporter"
+                      value={editedTask.supporter}
+                      onChange={handleInputChange}
+                      className="border rounded-md px-2 py-1"
+                    >
+                    </input>
+                  ) : (
+                    <span>{selectedTask.supporter} </span>
+                  )}
+              </div>
+                    
               {editedTask ? (
               <div className="flex justify-end">
                 <button

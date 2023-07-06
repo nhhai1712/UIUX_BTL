@@ -1,16 +1,16 @@
 import Layout from "@/components/Layout";
-import KanbanBoard from "@/components/KanbanBoard";
+import KanbanBoardTeam from "@/components/KanbanBoardTeam";
 import AddTask from  "@/components/AddTask";
 function Team() {
   return (
     <Layout>
       <div className="mt-20 flex">
-          <div className="ml-auto">
+          {/* <div className="ml-auto">
             <AddTask/>
-          </div>
+          </div> */}
       </div>
       <div className="mt-2 ml-80">   
-          <KanbanBoard/>
+          <KanbanBoardTeam />
       </div>     
     </Layout>
   );

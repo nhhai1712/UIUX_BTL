@@ -6,6 +6,20 @@ export default function Nav({children}){
   const togglePopup = () => {
     setIsOpen(!isOpen);
   };
+  const [showConfirm, setShowConfirm] = useState(false);
+
+  function handleSignoutClick() {
+    setShowConfirm(true);
+  }
+
+  function handleConfirm() {
+    setShowConfirm(false);
+  }
+
+  function handleCancel() {
+    setShowConfirm(false);
+  }
+
   return(
     <div>
       <div className="flex justify-end relative">  
@@ -48,28 +62,57 @@ export default function Nav({children}){
               </div>
               <ul className="py-1" role="none">
                 <li className="">
-                  <Link href="/profileSetting" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                  <Link href="/perInfo" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
                     <Image src="/user.png" alt="" width={12} height={12} className="mr-1"/>
                     Profile Settings
                   </Link>
                 </li>
                 <li>
-                  <a href="/invitation" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                  <Link href="/invitation" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
                     <Image src="/invitation.png" alt="" width={12} height={12} className="mr-1"/>
                     Invitation
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/activitylog" className="flex items-center  px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                  <Link href="/activitylog" className="flex items-center  px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
                     <Image src="/activity.png" alt="" width={12} height={12} className="mr-1"/>
                     Activity Log
-                  </a>
+                  </Link>
                 </li>
                 <li>
-                  <a href="/teamsettings" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                  <Link href="/teamsettings" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
                     <Image src="/settings.png" alt="" width={12} height={12} className="mr-1"/>
                     Team Settings
-                  </a>
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/feedback" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                    <Image src="/feedback.png" alt="" width={12} height={12} className="mr-1"/>
+                    Send Feedback
+                  </Link>
+                </li>
+                <li>
+                  {/* <Link href="/" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                    <Image src="/log-out.png" alt="" width={12} height={12} className="mr-1"/>
+                    Signout
+                  </Link> */}
+                  <Link href="" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem" onClick={handleSignoutClick}>
+                    <Image src="/log-out.png" alt="" width={12} height={12} className="mr-1"/>
+                    Signout
+                  </Link>
+                  {showConfirm && (
+                    <div className="fixed inset-0 z-10 flex items-center justify-center bg-black bg-opacity-50">
+                      <div className="bg-white rounded-md p-4">
+                        <p className="mb-2">Are you sure you want to sign out?</p>
+                        <div className="flex justify-end">
+                          <button className="px-2 py-1 mr-2 bg-gray-200 rounded-md" onClick={handleCancel}>Cancel</button>
+                          <button className="px-2 py-1 bg-red-500 text-white rounded-md" onClick={handleConfirm}>
+                            <Link href="/">Sign out</Link>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </li>
               </ul>
             </div>
@@ -101,12 +144,12 @@ export default function Nav({children}){
                       <span className="flex-1 ml-3 whitespace-nowrap">Team</span>
                     </Link>
                 </li>
-                <li>
+                {/* <li>
                     <Link href="/" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                       <Image src="/log-out.png"  alt="" width={24} height={24}/>
                       <span class="flex-1 ml-3 whitespace-nowrap">Signout</span>
                     </Link>
-                </li>   
+                </li>    */}
               </ul>
           </div>
         </aside>

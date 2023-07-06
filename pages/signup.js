@@ -13,7 +13,7 @@ const Signup = () => {
     if(password !== re_password){
       alert("Password and Re-Password are not the same");
     }else{
-      router.push("/homepage");
+      router.push("/");
     }
   };
   return (
@@ -76,7 +76,7 @@ const Signup = () => {
               required onChange={(e) => setRePassword(e.target.value)}/>
             </div>
           </div>
-          <button className={styles.signIn__btn} type="submit">
+          <button className="btn-primary w-4/5 mt-5" type="submit">
             Sign up
           </button>
         </div>

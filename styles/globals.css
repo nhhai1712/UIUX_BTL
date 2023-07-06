@@ -9,7 +9,8 @@
     background: linear-gradient(to bottom, #FCEABB, #F8B500);
 }
 .btn-primary{
-    @apply bg-primary text-white px-4 py-1 rounded-sm shadow-sm;
+    @apply  text-white px-6 py-2 rounded-md shadow-sm;
+    background: linear-gradient(to bottom, #36D1DC, #5B86E5);
 }
 .nav-bar{
     background: linear-gradient(to bottom, #00BFFF, #32CD32);
@@ -88,3 +89,33 @@
     max-height: 500px;
     overflow-y: auto;
   }
+.high{
+    --tw-border-opacity: 1;
+    border-color: rgb(0 0 0 / var(--tw-border-opacity));
+    border-width: 2px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(220 38 38 / var(--tw-bg-opacity));
+    border-radius: 0.375rem;
+    text-align: center;
+    width: 6rem;
+}
+.medium{
+    --tw-border-opacity: 1;
+    border-color: rgb(0 0 0 / var(--tw-border-opacity));
+    border-width: 2px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(96 165 250 / var(--tw-bg-opacity));
+    border-radius: 0.375rem;
+    text-align: center;
+    width: 6rem;
+}
+.low{
+    --tw-border-opacity: 1;
+    border-color: rgb(0 0 0 / var(--tw-border-opacity));
+    border-width: 2px;
+    --tw-bg-opacity: 1;
+    background-color: rgb(253 186 116 / var(--tw-bg-opacity));
+    border-radius: 0.375rem;
+    text-align: center;
+    width: 6rem;
+}

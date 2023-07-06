@@ -91,7 +91,7 @@ const Signin = (props) => {
             </button>
             
           </div>
-          <button className={styles.signIn__btn} type="submit">
+          <button className="btn-primary w-4/5 mt-4" type="submit">
             Sign in
           </button>
         </div>

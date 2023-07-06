@@ -33,7 +33,7 @@ export default function MyLineChart({data}) {
         stroke="#00FF00"
         activeDot={{ r: 8 }}
       />
-      <Line type="monotone" dataKey="In_Progress" stroke="#0000CD" />
+      <Line type="monotone" dataKey="in_progress" stroke="#0000CD" />
     </LineChart>
   );
 }

@@ -7,7 +7,7 @@ const IntroPage = () => {
       <div className="homepage-title flex justify-between items-center" >
         <div className="flex items-center m-5">
           <Image src="/management.png" alt="My image" color="black" width={100} height={100}/>
-          <b className="text-21xl ml-5">EasyManage</b>
+          <b className="text-3xl ml-5">EasyManage</b>
         </div>
 
         <div className="overflow-hidden cursor-pointer rounded-md">
