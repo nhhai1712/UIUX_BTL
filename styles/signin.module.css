@@ -6,12 +6,12 @@
 
 .signIn__google{
     border: 1px solid black;
-    border-radius: 10px;
+    border-radius: 6px;
     display: flex;
     align-items: center;
     width: 80%;
-    margin-bottom: 5px;
-    padding: 10px;
+    margin-bottom: 8px;
+    padding: 4px;
 
 }
 .signIn__google:hover{
@@ -34,12 +34,12 @@
     text-align: center;
     flex: 1;
     display: inline-block;
-    font-size: 25px;
+    font-size: 22px;
 }
 
 .signIn__facebook{
-    padding: 10px;
-    border-radius: 10px;
+    padding: 4px;
+    border-radius: 6px;
     border: 1px solid black;
     display: flex;
     align-items: center;
@@ -49,7 +49,7 @@
     text-align: center;
     flex: 1;
     display: inline-block;
-    font-size: 25px;
+    font-size: 22px;
 }
 .signIn__facebook__img{
     margin-left: 20px;
@@ -88,7 +88,7 @@
 
 .signIn__email__title{
     width: 80%;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .signIn__input__email__holder{
@@ -98,7 +98,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 6px;
     border: 1px solid black;
 }
 
@@ -120,7 +120,7 @@
 
 .signIn__title{
     width: 80%;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .signIn__password__holder{
@@ -130,7 +130,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border-radius: 10px;
+    border-radius: 6px;
     border: 1px solid black;
 }
 
@@ -148,11 +148,11 @@
 }
 
 .signIn__checkBox{
-    font-size: 20px;
+    font-size: 16px;
     flex: 1;
 }
 .signIn__forgorPass{
-    font-size: 20px;
+    font-size: 16px;
 }
 
 .signIn__btn{

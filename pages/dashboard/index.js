@@ -1,12 +1,28 @@
 import Layout from "@/components/Layout";
 import MyPieChart from "@/components/Pie_Chart";
 import MyLineChart from "@/components/Line_Chart";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+
 const Dashboard = () => {
+    const [tasks, setTasks] = useState([]);
+    useEffect(() => {
+      async function fetchTasks() {
+        const response = await fetch('data/task-per.json');
+        const tasks = await response.json();
+        // const count = completedTasks.length;
+        // console.log(`Number of completed tasks: ${count}`);
+        setTasks(tasks);
+      }
+      fetchTasks();
+    }, []);
+    const completedTasks = tasks.filter((task) => task.status === 'completed').length;
+    const inProgressTasks = tasks.filter((task) => task.status === 'in-progress').length;
+    const notStartedTasks = tasks.filter((task) => task.status === 'not-started').length;
+    // console.log(completedTasks, inProgressTasks, notStartedTasks);
     const dataPiePer = [
-        { status: 'Completed', value: 2 },
-        { status: 'In Progress', value: 5 },
-        { status: 'Not Started', value: 3 }
+        { status: 'Completed', value: completedTasks },
+        { status: 'In Progress', value: inProgressTasks },
+        { status: 'Not Started', value: notStartedTasks }
     ];
     const dataPieTeam = [
         { status: 'Completed', value: 3 },
@@ -14,20 +30,20 @@ const Dashboard = () => {
         { status: 'Not Started', value: 1 }
     ];
     const dataLinePer = [
-        { status: "Jan",Completed: 1,In_Progress: 2,},
-        { status: "Feb",Completed: 1,In_Progress: 2,},
-        { status: "Mar",Completed: 2,In_Progress: 3,},
-        { status: "Apr",Completed: 3,In_Progress: 4,},
-        { status: "May",Completed: 5,In_Progress: 6,},
-        { status: "Jun",Completed: 6,In_Progress: 7,}
+        { status: "Jan",Completed: 1,in_progress: 2,},
+        { status: "Feb",Completed: 1,in_progress: 2,},
+        { status: "Mar",Completed: 2,in_progress: 3,},
+        { status: "Apr",Completed: 3,in_progress: 4,},
+        { status: "May",Completed: 5,in_progress: 6,},
+        { status: "Jun",Completed: 6,in_progress: 7,}
     ];
     const dataLineTeam = [
-        { status: "Jan",Completed: 1,In_Progress: 3,},
-        { status: "Feb",Completed: 1,In_Progress: 3,},
-        { status: "Mar",Completed: 2,In_Progress: 5,},
-        { status: "Apr",Completed: 3,In_Progress: 5,},
-        { status: "May",Completed: 5,In_Progress: 6,},
-        { status: "Jun",Completed: 6,In_Progress: 7,}
+        { status: "Jan",Completed: 1,in_progress: 3,},
+        { status: "Feb",Completed: 1,in_progress: 3,},
+        { status: "Mar",Completed: 2,in_progress: 5,},
+        { status: "Apr",Completed: 3,in_progress: 5,},
+        { status: "May",Completed: 5,in_progress: 6,},
+        { status: "Jun",Completed: 6,in_progress: 7,}
   ];
     const [clickedPer, setClickedPer] = useState(true);
     const handleClickPer = () => {
@@ -42,7 +58,7 @@ const Dashboard = () => {
     return <Layout>
         <div className="mt-24 ml-80  bg-gradient-to-b from-lime-500 to-yellow-500 h-14 w-2/5 rounded-tl-xl rounded-xl border text-center">
           <div className="m-2">
-            <p>Hi <b>Nguyen Hoang Hai</b>, you have <b>10</b> personal tasks and <b>8</b> group task. </p>
+            <p>Hi <b>Nguyen Hoang Hai</b>, you have <b>{tasks.length}</b> personal tasks and <b>8</b> group task. </p>
           </div>
         </div>          
         <div className="flex mt-6">

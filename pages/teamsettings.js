@@ -1,13 +1,9 @@
 import Layout from "@/components/Layout";
-
-function TeamSettings() {
+export default function TeamSettings() {
   return (
     <Layout>
-      <div>
-      
-      </div>
+      <div></div>
     </Layout>
   );
 }
 
-export default TeamSettings;
