@@ -2,7 +2,14 @@ This is a project used as an exercise for the subject of UI/UX
 
 ## Getting Started
 
-First, run the development server:
+First, clone the project to the localhost
+
+git clone https://github.com/nhhai819/UIUX_BTL
+
+After cloning the project, use `yarn install` to install the dependencies for the project
+
+Run the development server:
+
 
 ```bash
 npm run dev
