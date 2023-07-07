@@ -12,14 +12,14 @@ Run the development server:
 
 
 ```bash
-npm run dev
-# or
+
 yarn run dev
-# or
-pnpm dev
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+The project's data is stored in the public/data folder, you can edit it directly into each .json data file or edit it by CRUD operations in the project.
 
 You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
