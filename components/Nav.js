@@ -80,7 +80,7 @@ export default function Nav({children}){
                   </Link>
                 </li>
                 <li>
-                  <Link href="/teamsettings" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
+                  <Link href="/generalInfo" className="flex items-center px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white" role="menuitem">
                     <Image src="/settings.png" alt="" width={12} height={12} className="mr-1"/>
                     Team Settings
                   </Link>

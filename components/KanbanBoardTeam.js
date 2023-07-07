@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FilterButtonTeam from './FilterButtonTeam';
 import AddTask from  "@/components/AddTask";
 import SearchBar from '@/components/SearchBar';
+import AddTeam from '@/components/AddTeam';
 export default function KanbanBoard() {
   const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
@@ -10,12 +11,13 @@ export default function KanbanBoard() {
   const [selectedPriority, setSelectedPriority] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
   const [selectedNameTeam, setSelectedNameTeam] = useState('');
+  const [selectedWorkLocation, setSelectedWorkLocation] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
   useEffect(() => {
     async function fetchTasks() {
       const response = await fetch('data/task-team.json');
       const tasks = await response.json();
-      console.log(tasks);
+      // console.log(tasks);
       setTasks(tasks);
     }
     fetchTasks();
@@ -110,10 +112,11 @@ export default function KanbanBoard() {
       console.error(`Failed to delete task ${taskId}: ${error.message}`);
     }
   }
-  function handleFilterChange({ selectedPriority, selectedStatus, selectedNameTeam }) {
+  function handleFilterChange({ selectedPriority, selectedStatus, selectedNameTeam, selectedWorkLocation }) {
     setSelectedPriority(selectedPriority);
     setSelectedStatus(selectedStatus);
     setSelectedNameTeam(selectedNameTeam);
+    setSelectedWorkLocation(selectedWorkLocation)
   }
   function handleSearchTermChange(searchTerm) {
     setSearchTerm(searchTerm);
@@ -124,6 +127,9 @@ export default function KanbanBoard() {
       return false;
     }
     if (selectedStatus && task.status !== selectedStatus) {
+      return false;
+    }
+    if (selectedNameTeam && task.nameTeam !== selectedNameTeam) {
       return false;
     }
     if (searchTerm 
@@ -157,6 +163,7 @@ export default function KanbanBoard() {
         onNameTeamChange={setSelectedNameTeam} 
         onChange={handleFilterChange}
       />
+        <AddTeam/>
         <AddTask/>
       </div>
       <div className='flex'>

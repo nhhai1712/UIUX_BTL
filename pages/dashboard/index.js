@@ -15,9 +15,24 @@ const Dashboard = () => {
       }
       fetchTasks();
     }, []);
+    const [taskTeam, setTaskTeam] = useState([]);
+    useEffect(() => {
+      async function fetchTasksTeam() {
+        const responseTeam = await fetch('data/task-team.json');
+        const taskTeam = await responseTeam.json();
+        // const count = completedTasks.length;
+        // console.log(`Number of completed tasks: ${count}`);
+        setTaskTeam(taskTeam);
+      }
+      fetchTasksTeam();
+    }, []);
+
     const completedTasks = tasks.filter((task) => task.status === 'completed').length;
     const inProgressTasks = tasks.filter((task) => task.status === 'in-progress').length;
     const notStartedTasks = tasks.filter((task) => task.status === 'not-started').length;
+    const completedTasksTeam = taskTeam.filter((task) => task.status === 'completed').length;
+    const inProgressTasksTeam = taskTeam.filter((task) => task.status === 'in-progress').length;
+    const notStartedTasksTeam = taskTeam.filter((task) => task.status === 'not-started').length;
     // console.log(completedTasks, inProgressTasks, notStartedTasks);
     const dataPiePer = [
         { status: 'Completed', value: completedTasks },
@@ -25,9 +40,9 @@ const Dashboard = () => {
         { status: 'Not Started', value: notStartedTasks }
     ];
     const dataPieTeam = [
-        { status: 'Completed', value: 3 },
-        { status: 'In Progress', value: 1 },
-        { status: 'Not Started', value: 1 }
+        { status: 'Completed', value: completedTasksTeam },
+        { status: 'In Progress', value: inProgressTasksTeam },
+        { status: 'Not Started', value: notStartedTasksTeam }
     ];
     const dataLinePer = [
         { status: "Jan",Completed: 1,in_progress: 2,},
@@ -58,7 +73,7 @@ const Dashboard = () => {
     return <Layout>
         <div className="mt-24 ml-80  bg-gradient-to-b from-lime-500 to-yellow-500 h-14 w-2/5 rounded-tl-xl rounded-xl border text-center">
           <div className="m-2">
-            <p>Hi <b>Nguyen Hoang Hai</b>, you have <b>{tasks.length}</b> personal tasks and <b>8</b> group task. </p>
+            <p>Hi <b>Nguyen Hoang Hai</b>, you have <b>{tasks.length}</b> personal tasks and <b>{taskTeam.length}</b> group task. </p>
           </div>
         </div>          
         <div className="flex mt-6">

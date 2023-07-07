@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import FilterButton from './FilterButton';
 import AddTask from  "@/components/AddTask";
 import SearchBar from '@/components/SearchBar';
+import FilterButtonTeam from '@/components/FilterButtonTeam';
 export default function KanbanBoard() {
   const [tasks, setTasks] = useState([]);
   const [selectedTask, setSelectedTask] = useState(null);
@@ -10,7 +11,7 @@ export default function KanbanBoard() {
   const [selectedPriority, setSelectedPriority] = useState('');
   const [selectedStatus, setSelectedStatus] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-
+  const [selectedWorkLocation, setSelectedWorkLocation] = useState('');
   useEffect(() => {
     async function fetchTasks() {
       const response = await fetch('data/task-per.json');
@@ -127,6 +128,7 @@ export default function KanbanBoard() {
   function handleFilterChange({ selectedPriority, selectedStatus }) {
     setSelectedPriority(selectedPriority);
     setSelectedStatus(selectedStatus);
+    setSelectedWorkLocation(selectedWorkLocation);
   }
   function handleSearchTermChange(searchTerm) {
     setSearchTerm(searchTerm);
@@ -136,6 +138,9 @@ export default function KanbanBoard() {
       return false;
     }
     if (selectedStatus && task.status !== selectedStatus) {
+      return false;
+    }
+    if (selectedWorkLocation && task.WorkLocation !== selectedWorkLocation) {
       return false;
     }
     if (searchTerm 
@@ -158,10 +163,17 @@ export default function KanbanBoard() {
     <div className='relative'>
       <div className='flex justify-end mb-4'>
         <SearchBar searchTerm={searchTerm} onChange={handleSearchTermChange} />
-        <FilterButton
+        {/* <FilterButton
           selectedPriority={selectedPriority}
           selectedStatus={selectedStatus}
           onChange={handleFilterChange}
+        />  */}
+        <FilterButtonTeam
+        selectedPriority={selectedPriority}
+        selectedStatus={selectedStatus}
+        selectedWorkLocation={selectedWorkLocation}
+        onWorkLocationChange={setSelectedWorkLocation} 
+        onChange={handleFilterChange}
         />
         <AddTask/>
       </div>
@@ -194,7 +206,7 @@ export default function KanbanBoard() {
                 <b>{task.title}</b>
                 <p>{task.description}</p>
                 <div className='flex'>
-                  <div className='border-black border-2 bg-lime-200 rounded-md text-center w-24 mr-2'>
+                  <div className='border-black border-2 bg-lime-200 rounded-md text-center w-28 mr-2'>
                     <h3>{task.workLocation}</h3>
                   </div>
                   <div className={task.priority}>
@@ -234,7 +246,7 @@ export default function KanbanBoard() {
                 <b>{task.title}</b>
                 <p>{task.description}</p>
                 <div className='flex'>
-                  <div className='border-black border-2 bg-lime-200 rounded-md text-center w-24 mr-2'>
+                  <div className='border-black border-2 bg-lime-200 rounded-md text-center w-28 mr-2'>
                     <h3>{task.workLocation}</h3>
                   </div>
                   <div className={task.priority}>
@@ -274,7 +286,7 @@ export default function KanbanBoard() {
                 <b>{task.title}</b>
                 <p>{task.description}</p>
                 <div className='flex'>
-                  <div className='border-black border-2 bg-lime-200 rounded-md text-center w-24 mr-2'>
+                  <div className='border-black border-2 bg-lime-200 rounded-md text-center w-28 mr-2'>
                     <h3>{task.workLocation}</h3>
                   </div>
                   <div className={task.priority}>
