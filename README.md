@@ -1,4 +1,5 @@
 This is a project used as an exercise for the subject of UI/UX
+Main technology used is nextjs and tailwindcss
 
 ## Getting Started
 
